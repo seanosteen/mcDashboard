@@ -1,4 +1,4 @@
-![Who's Minecrafting?](assets/Whos-Minecrafting_sm.png)
+![Who's Minecrafting?](assets/Whos-Minecraftinglg.png)
 
 # mcDashboard - A Simple Minecraft Time Tracking Dashboard for Family & Friends Servers
 
