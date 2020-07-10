@@ -1,10 +1,10 @@
-![asstets/whos-minecrafting_sm.png](Who's Minecrafting?)
+![Who's Minecrafting?](assets/whos-minecrafting_sm.png)
 
 # mcDashboard - A Simple Minecraft Time Tracking Dashboard for Family & Friends Servers
 
 ## Overview
 
-![assets/Minecraft_Dashboard1.png](mcDashboard)
+![Dhasboard Screen Shot](assets/Minecraft_Dashboard1.png)
 
 Minecraft has made a huge resurgence this year among my my friends and family. The renewed interest is due in no small part to our shelter-in-place practices during the COVID-19 Pandemic as we search for new ways to gather and to communicate with one another. I recently worked with my kids to set up a multiplayer server at home. Within a day we were all hooked. Within two days, none of us knew what day it was. We started spending so much time in Minecraft that I wanted to start tracking it.
 
@@ -14,7 +14,7 @@ Please keep in mind that this project is a proof of concept and a learning oppor
 
 ## Getting started
 
-![assets/mcDashboardTechnicalDiagram.png](mcDashboardTechnicalDiagram)
+![Technical Diagram](assets/mcDashboardTechnicalDiagram.png)
 
 There are several moving parts to this dashboard application. There's the logger script that polls the Minecraft server every minute. The Logger persists the logged in user information to a MySQL server. A Webserver then pulls the latest tally out of MySQL and displays it on a webpage. If you are using it as an information screen like me, you will also have a computer running this webpage in kiosk-mode. The good news is that you can probably fit all of these components onto one [Raspberry Pi](https://www.raspberrypi.org) System on a Chip (SoC) computer. That's what we're using at our house, but with one exception. We're using a NAS Appliance with a built-in MySQL server to host the database. Unfortunately the Achilles heal of the Raspberry Pi is that it uses an SD card for storage and there's a possibility for the card to become corrupted if the Pi loses power. If you are hosting the MySQL Server on your Pi, please attach a USB disk drive to use for the database, or at the very least make regular backups of your data.
 
