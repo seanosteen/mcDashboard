@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="description" content="Minecraft Stats" />
+  <title id='Description'>Minecraft Stats</title>
+  <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="gettheme.js"></script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $('#statsGrid').html('<br/><br/>Loading...<br/><br/>');
+
+      // Setup Minecraft Stats
+      getStats();
+      setInterval(function() {
+        $('#statsGrid').fadeOut({
+          duration: 1000,
+          complete: getStats
+        });
+      }, 60000);
+
+
+      function getStats() {
+        $.ajax({
+          dataType: "json",
+          url: "/mc/mcstats.cgi",
+          success: function(e) {
+
+            if (e.error) {
+              error = '<br/><br/><img src="sad_steve.png" alt="Sad Steve" /><br/><br/>' + e.error + '<br/><br/>\n';
+              $('#statsGrid').html(error);
+              $('#statsGrid').fadeIn(2000);
+            } else if (!e.stats || e.stats.length == 0) {
+              error = '<br/><br/><img src="sad_steve.png" alt="Sad Steve" /><br/><br/>No one has logged any time on the server today.<br/><br/>\n';
+              $('#statsGrid').html(error);
+              $('#statsGrid').fadeIn(2000);
+            } else {
+              var stats = "<table>\n";
+              e.stats.forEach(user => {
+                stats += '<tr><td><img src="https://minotar.net/bust/' + user.player_uuid + '/100.png" alt="Player Avatar" /></td>';
+                if (user.player_full_name == user.player_name) {
+                  stats += '<td><span class="username">' + user.player_name + '</span></td>';
+                } else {
+                  stats += '<td><span class="username">' + user.player_full_name + '</span><br>(' + user.player_name + ')</td>';
+                }
+                stats += '<td>' + user.time_today + '</td>';
+                if (user.currently_logged_in == "true") {
+                  stats += '<td><img src="switched-on.png" alt="User is Logged In" /></td></tr>\n';
+                } else {
+                  stats += '<td><img src="switched-off.png" alt="User is Logged Off" /></td></tr>\n';
+                }
+
+              });
+              stats += "</table>\n";
+              $('#statsGrid').html(stats);
+              $('#statsGrid').fadeIn(2000);
+
+            }
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+            error = '<br/><br/><img src="sad_steve.png" alt="Sad Steve" /><br/><br/>jQuery or Scripting Error from the mcstatus.cgi: ' + textStatus + ': ' + errorThrown + '<br/><br/>\n';
+            $('#statsGrid').html(error);
+            $('#statsGrid').fadeIn(2000);
+          }
+        });
+
+      } // getStats
+
+    }); // documentReady
+  </script>
+</head>
+
+<body>
+
+  <style>
+    body {
+      background-color: #000000;
+      background-image: url("Minecraft-Background.png");
+      margin-left: 0px;
+    }
+
+    .title {
+      width: 100%;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .stats {
+      width: 100%;
+      text-align: center;
+    }
+    .statsGrid {
+      width: 90%;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: Arial;
+      font-size: 25px;
+      text-align: center;
+      background: rgba(128, 128, 128, 0.5);
+      border: solid 1px black;
+      border-radius: 15px;
+      -moz-border-radius: 15px;
+    }
+
+    table {
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    table,
+    th,
+    td {
+      text-align: center;
+      opacity: 1.0;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      background-color: none;
+    }
+
+    td {
+      font-size: 50px;
+    }
+
+    .username {
+      font-size: 72px;
+    }
+  </style>
+
+  <div class="title">
+    <img src="Whos-Minecrafting.png" alt="Minecrafting" />
+  </div>
+
+  <div id="stats" class="stats">
+    <div id="statsGrid" class="statsGrid">
+      If you see this message, Javascript is disabled, or there was a problem loading jQuery.
+    </div>
+  </div>
+</body>
+
+</html>
