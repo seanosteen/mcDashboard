@@ -1,10 +1,10 @@
-![Who's Minecrafting?](assets/whos-minecrafting_sm.png)
+![Who's Minecrafting?](assets/Whos-Minecrafting_sm.png)
 
 # mcDashboard - A Simple Minecraft Time Tracking Dashboard for Family & Friends Servers
 
 ## Overview
 
-![Dhasboard Screen Shot](assets/Minecraft_Dashboard1.png)
+![Dashboard Screen Shot](assets/Minecraft_Dashboard1.png)
 
 Minecraft has made a huge resurgence this year among my my friends and family. The renewed interest is due in no small part to our shelter-in-place practices during the COVID-19 Pandemic as we search for new ways to gather and to communicate with one another. I recently worked with my kids to set up a multiplayer server at home. Within a day we were all hooked. Within two days, none of us knew what day it was. We started spending so much time in Minecraft that I wanted to start tracking it.
 
