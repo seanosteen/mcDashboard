@@ -41,16 +41,17 @@ except mysql.connector.errors.InterfaceError:
 
 try:
     mcServer = MinecraftServer.lookup('<CHANGEME-Minecraft-Server-Host>')
-    mcQuery = mcServer.query()
+    mcQuery = mcServer.status()
 except:
     print('Unable to connect to the Minecraft server or Query port. Make sure you have the correct address:port and that "query-enable=true" is set in your server.properties file')
     exit()
 
 try:
-    for player in mcQuery.players.names:
-        cursor = db.cursor()
-        cursor.execute(("INSERT INTO PlayerStats (timestamp, player_name) VALUES (CURRENT_TIMESTAMP, '{}')").format(player))
-        AddPlayerAlias(player, db)
+    if (mcQuery.players.sample):
+        for player in mcQuery.players.sample:
+            cursor = db.cursor()
+            cursor.execute(("INSERT INTO PlayerStats (timestamp, player_name) VALUES (CURRENT_TIMESTAMP, '{}')").format(player.name))
+            AddPlayerAlias(player.name, db)
 except mysql.connector.errors.ProgrammingError as e:
     print('MySQL returned the following error message on your last query: {}'.format(e))
 finally:

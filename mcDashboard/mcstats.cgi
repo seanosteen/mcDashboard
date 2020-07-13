@@ -19,7 +19,7 @@ except mysql.connector.errors.InterfaceError:
 
 try:
     mcServer = MinecraftServer.lookup('<CHANGEME-Minecraft-Server-Hostname>')
-    mcQuery = mcServer.query()
+    mcQuery = mcServer.status()
 except:
     errorResponse('Unable to reach the Minecraft server. It may be down for maintenance')
     exit()
@@ -40,9 +40,10 @@ i=0
 
 for row in rows:
     loggedIn = "false"
-    for user in mcQuery.players.names:
-        if user == row[0]:
-            loggedIn = "true"
+    if (mcQuery.players.sample):
+        for user in mcQuery.players.sample:
+            if user.name == row[0]:
+                loggedIn = "true"
     timeFormatted = '{:02d}:{:02d}'.format(*divmod(row[2],60))
     print(('{{"player_name":"{}", "player_full_name":"{}", "time_today":"{}", "currently_logged_in":"{}", "player_uuid":"{}"}}').format(row[0],row[1],timeFormatted,loggedIn, row[3]), end = '')
     i += 1
