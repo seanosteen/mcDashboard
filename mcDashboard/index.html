@@ -26,7 +26,7 @@
       function getStats() {
         $.ajax({
           dataType: "json",
-          url: "/mc/mcstats.cgi",
+          url: "mcstats.cgi",
           success: function(e) {
 
             if (e.error) {
@@ -40,7 +40,8 @@
             } else {
               var stats = "<table>\n";
               e.stats.forEach(user => {
-                stats += '<tr><td><img src="https://minotar.net/bust/' + user.player_uuid + '/100.png" alt="Player Avatar" /></td>';
+                //stats += '<tr><td><img src="https://minotar.net/bust/' + user.player_uuid + '/100.png" alt="Player Avatar" /></td>';
+                stats += '<tr><td><img src="https://crafatar.com/renders/body/' + user.player_uuid + '?scale=3" alt="Player Avatar" /></td>';
                 if (user.player_full_name == user.player_name) {
                   stats += '<td><span class="username">' + user.player_name + '</span></td>';
                 } else {
