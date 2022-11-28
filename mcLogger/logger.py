@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import mysql.connector
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer
 import requests
 
 def Getuuid(username):
@@ -40,7 +40,7 @@ except mysql.connector.errors.InterfaceError:
     exit()
 
 try:
-    mcServer = MinecraftServer.lookup('<CHANGEME-Minecraft-Server-Host>')
+    mcServer = JavaServer.lookup('<CHANGEME-Minecraft-Server-Host>')
     mcQuery = mcServer.status()
 except:
     print('Unable to connect to the Minecraft server or Query port. Make sure you have the correct address:port and that "query-enable=true" is set in your server.properties file')
