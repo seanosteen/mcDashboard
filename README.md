@@ -25,7 +25,7 @@ There are several moving parts to this dashboard application. There's the logger
 1. A Raspberry Pi Computer or a spare PC that can run your favorite flavor of Linux. Yes, you can probably make all of this work on a Windows machine, but for this how-to, we're going to stick to Linux. Your Linux host will need:
     1. Shell access. You will be installing some applications and configuring cron jobs. In Raspberry Pi, this is easy as you can open a terminal window when a keyboard and monitor are attached, or you can SSH into the Pi and configure everything through terminal. If your Linux host belongs to someone else, like your hosting provider, you may need to get some help. Shell access is not absolutely required if you can still install all the requisite software through other means. But shell access is certainly the easier path.
     1. [Python3](https://python.org) should be installed along with these libraries:
-        - [mysql-connector](https://dev.mysql.com/doc/connector-python/en)
+        - [mysql-connector-python](https://dev.mysql.com/doc/connector-python/en) Note: if using PIP, install the package "mysql-connector-python"
         - [mcstatus](https://github.com/Dinnerbone/mcstatus)
     1. A web server installed and configured to serve the web application files in the mcDashboard directory. [Apache](https://httpd.apache.org/) or [Nginx](https://www.nginx.com/) will do just fine. See the WebServer section below for important configuration tasks. The webserver will need to be configured to run python3 as a script interpreter.
     1. MySQL latest stable build. You will need the appropriate permissions to create a database, add tables, and run CREATE, INSERT, UPDATE, DELETE, and SELECT.
@@ -110,7 +110,7 @@ If you see some plain text that starts with
 ```
 #!/usr/bin/python3
 import mysql.connector
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer
 ```
 
 you still have some configuration to do in order to get the webserver to interpret the script as an executable.
