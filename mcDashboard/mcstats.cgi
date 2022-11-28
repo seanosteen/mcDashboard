@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import mysql.connector
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer
 
 def errorResponse(sError):
     print('Content-Type: application/json\n')
@@ -18,7 +18,7 @@ except mysql.connector.errors.InterfaceError:
     exit()
 
 try:
-    mcServer = MinecraftServer.lookup('<CHANGEME-Minecraft-Server-Hostname>')
+    mcServer = JavaServer.lookup('<CHANGEME-Minecraft-Server-Hostname>')
     mcQuery = mcServer.status()
 except:
     errorResponse('Unable to reach the Minecraft server. It may be down for maintenance')
